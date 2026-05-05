@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projet français :)</title>
+    <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+    <!-- main menu -->
+    <div class="container" id="title-screen">
+        <h1 id="gamename">Le triage de poubelle</h1>
+        <div id="flavourtext"></div>
+        <div id="thebuttons">
+            <button class="difficultybutton" onclick="begin()">Commencer!</button>
+            <button class="difficultybutton" onclick="openhowto()">Les Instructions</button>
+        </div>
+        <div id="instructions" class="popup">
+            <div class="popup-content">
+                <h2>Instructions</h2>
+                lorem ipsum <br /> <br />
+                <button onclick="closehowto()">Compris!</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="order-screen">
+        <div class="centerer">
+            <div class="orderbutton">
+                <button class="difficultybutton" onclick="orderup()" id="orderbutton">Sortir les poubelles</button>
+            </div>
+            <button id="next1" onclick="nextpage()">Prochain étape!</button>
+        </div>
+    </div>
+
+    <div class="container" id="base-screen">
+        <div class="toppings-container">
+            <div class="topping" id="trash" onclick="chuck(1)">Déchêts</div>
+            <div class="topping" id="recycling" onclick="chuck(2)">Recyclage</div>
+            <div class="topping" id="compost" onclick="chuck(3)">Compost</div>
+        </div>
+        <button class="nextbutton" onclick="nextpage()">Tout fini!</button>
+    </div>
+
+    <div class="container" id="final-screen">
+        <div class="centerer">
+            <div id="time-took"> </div>
+            <div id="final-score"> </div>
+            <button onclick="nextpage()">Encore!</button>
+        </div>
+    </div>
+
+    <div class="container" id="quiz-screen"></div>
+
+    <div id="order">
+        <p id="strnum">Poubelle #</p>
+        Prochaine pièce de poubelle: <br />
+        <b id="strbase"></b> <br />
+        <b id="strtop1"></b> <br />
+        <b id="strtop2"></b> <br />
+        <b class="urorder" id="urbase"></b> <br />
+        <b class="urorder" id="urtop1"></b> <br />
+        <b class="urorder" id="urtop2"></b> <br />
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

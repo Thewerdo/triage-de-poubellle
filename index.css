@@ -1,0 +1,127 @@
+html, body {
+    margin: 0; 
+    height: 100%; 
+    overflow: hidden
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 99vh; 
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+.toppings-container {
+    height: 50vh;
+    width: 100vw;
+}
+
+.centerer {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100vw;
+}
+
+.difficultybutton {
+    text-align: center;
+    width: 50%;
+    height: 100px;
+    margin: 2% auto;
+    font-size: 20px;
+}
+
+#thebuttons {
+    margin: auto;
+    text-align: center;
+    margin-top: 10%;
+    width: 100%;
+    z-index: 2;
+}
+
+#order {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 30vh;
+    width: 30vw;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    display: none;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#title-screen {
+    display: block;
+}
+
+#order-screen {
+    display: none;
+}
+
+#quiz-screen {
+    display: none;
+}
+
+#next1 {
+    display: none;
+    margin: auto;
+}
+
+.nextbutton {
+    float: right;
+}
+
+.prevbutton {
+    float: left;
+}
+
+.topping {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: end;
+    width: 33vw;
+    height: 50vh;
+    vertical-align: bottom;
+}
+
+#trash {
+    background-color: black;
+    color: white;
+}
+
+#recycling {
+    background-color: dodgerblue;
+}
+
+#compost {
+    background-color: green;
+}
+
+#final-screen {
+    display: none;
+}
