@@ -46,11 +46,22 @@
         <div class="centerer">
             <div id="time-took"> </div>
             <div id="final-score"> </div>
-            <button onclick="nextpage()">Encore!</button>
+            <button id="encore" onclick="nextpage()">Encore!</button>
         </div>
     </div>
 
-    <div class="container" id="quiz-screen"></div>
+    <div class="container" id="quiz-screen">
+        <div class="centerer">
+            <audio controls>
+                <source src="listening.mp3" type="audio/mpeg">
+            </audio>
+            <div id="thequestion">test</div>
+            <div id="option1" onclick="answer(1)">1</div>
+            <div id="option2" onclick="answer(2)">2</div>
+            <div id="option3" onclick="answer(3)">3</div>
+            <div id="option4" onclick="answer(4)">4</div>
+        </div>
+    </div>
 
     <div id="order">
         <p id="strnum">Poubelle #</p>

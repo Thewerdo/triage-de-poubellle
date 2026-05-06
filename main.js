@@ -2,8 +2,9 @@ let titlescrn = document.getElementById("title-screen");
 let orderscrn = document.getElementById("order-screen");
 let basescrn = document.getElementById("base-screen");
 let finalscrn = document.getElementById("final-screen");
+let quizscrn = document.getElementById("quiz-screen");
 let takeorder = document.getElementById("orderbutton");
-let howto = document.getElementById("instructions")
+let howto = document.getElementById("instructions");
 
 let thing1 = 0;
 let thing2 = 0;
@@ -11,6 +12,9 @@ let n = 0;
 let interval;
 let time = 0;
 let points = 0;
+let done = false;
+let numq = 0;
+
 const trashes = [ //10 each
     "un pansement", 
     "le polystyrène", 
@@ -47,6 +51,22 @@ const composts = [
     "une assiette en papier", 
     "un filtre à café"
 ];
+const qs = [
+    "Vrai ou Faux: le bac des ordures est pour les objets qui ne peuvent pas être compostés ni recyclés.",
+    "On met cet objet dans le recyclage",
+    "Qu'est-ce qu'on met dans le compost?",
+    "Vrai ou Faux: Il faut rincer les bouteilles avant de les jeter dans le recyclage.",
+    "Vrai ou Faux: Si on fait attention au tri, on protégera mieux l'environnement."
+];
+const options = [
+    "Vrai", "Faux", " ", " ", 
+    "Les pelures de fruits", "Les coquilles d'oeufs", "Les canettes", "Les sacs de croustilles",
+    "Les restes de nourriture", "Les ampoules", "Les bouteilles", "Les produits d'hygiène",
+    "Vrai", "Faux", " ", " ",
+    "Vrai", "Faux", " ", " "
+]
+const as = ["Vrai", "Les canettes", "Les restes de nourriture", "Vrai", "Vrai"];
+const chosen = [];
 dummy = [];
 const fullorder = [];
 const strfullorder = [];
@@ -95,7 +115,7 @@ async function orderup() {
         strfullorder[i] = dummy[thing2];
         document.getElementById("strbase").innerHTML += strfullorder[i];
         document.getElementById("strbase").innerHTML += "<br>";
-        await sleep(1000);
+        await sleep(500);
     }
     document.getElementById("next1").style.display = "block";
 }
@@ -119,12 +139,23 @@ function nextpage() {
         checkdrink();
     }
     else if (finalscrn.style.display === "block") {
-        takeorder.removeAttribute("disabled");
-        orderscrn.style.display = 'block';
-        finalscrn.style.display = 'none';
-        document.getElementById("strnum").innerHTML = "Poubelle #";
-        document.getElementById("strbase").innerHTML = "";
-        document.getElementById("next1").style.display = "none";    
+        if (!done) {
+            takeorder.removeAttribute("disabled");
+            orderscrn.style.display = 'block';
+            finalscrn.style.display = 'none';
+            document.getElementById("strnum").innerHTML = "Poubelle #";
+            document.getElementById("strbase").innerHTML = "";
+            document.getElementById("next1").style.display = "none";
+            done = true;   
+        } 
+        else {
+            quizscrn.style.display = 'block';
+            finalscrn.style.display = 'none';
+            document.getElementById("order").style.display = 'none';
+            nextq();
+            time = 0;
+            starttime();
+        }
     }
 }
 
@@ -174,4 +205,29 @@ async function checkdrink() {
     document.getElementById("time-took").innerHTML = `Secondes passés: ${time}`;
     await sleep(1000);
     document.getElementById("final-score").innerHTML = `Score actuel: ${points}`;
+}
+
+function answer(a) {
+    if (a == as[numq]) {
+        points += 20;
+    }
+    nextq();
+    numq++;
+}
+
+function nextq() {
+    if (numq < qs.length) {
+        document.getElementById("thequestion").innerHTML = qs[numq];
+        document.getElementById("option1").innerHTML = options[4*numq];
+        document.getElementById("option2").innerHTML = options[4*numq +1];
+        document.getElementById("option3").innerHTML = options[4*numq +2];
+        document.getElementById("option4").innerHTML = options[4*numq +3];
+    }
+    else {
+        quizscrn.style.display = 'none';
+        finalscrn.style.display = 'block';
+        document.getElementById("encore").style.display = 'none';
+        stoptime();
+        checkdrink();
+    }
 }
